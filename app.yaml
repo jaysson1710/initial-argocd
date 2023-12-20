@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo1
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/jaysson1710/peladonerd.git'
+    path: ./kubernetes/1
+    targetRevision: master
+  destination:
+    namespace: default
+    name: in-cluster
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
